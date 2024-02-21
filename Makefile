@@ -149,7 +149,7 @@ fclean: clean #libft_fclean
 re: fclean all
 
 # La regla run compila y ejecuta el programa
-run: re
+test: re
 	@read -p "¿Cuántos argumentos quieres introducir? " num_args; \
 	for ((i=1; i<=num_args; i++)); do \
 		read -p "Introduce el argumento $$i: " arg; \
@@ -173,14 +173,17 @@ git: fclean
 
 # La regla help muestra las reglas del make
 help:
-	@echo "$(GREEN)Reglas del make:$(RESET)"
-	@echo "  $(CYAN)all$(RESET)		-> Compila el ejecutable"
+	@echo "\n"
+	@echo "$(BOLD_PURPLE)Reglas del make:$(RESET)"
+	@echo "\n"
+	@echo "  $(CYAN)all$(RESET)	-> Compila el ejecutable"
 	@echo "  $(CYAN)clean$(RESET)	-> Elimina los archivos objeto"
-	@echo "  $(CYAN)fclean$(RESET)	-> Elimina los archivos objeto y el ejecutable"
-	@echo "  $(CYAN)re$(RESET)		-> Elimina todo y compila nuevamente"
-	@echo "  $(CYAN)run$(RESET)		-> Compila y ejecuta el promgrama"
-	@echo "  $(CYAN)git$(RESET)		-> Agrega, hace commit y hace push"
+	@echo "  $(CYAN)fclean$(RESET)-> Elimina los archivos objeto y el ejecutable"
+	@echo "  $(CYAN)re$(RESET)	-> Elimina todo y compila nuevamente"
+	@echo "  $(CYAN)test$(RESET)	-> Compila y ejecuta el promgrama con los argumentos que le pases"
+	@echo "  $(CYAN)git$(RESET)	-> Agrega, hace commit y hace push"
 	@echo "  $(CYAN)help$(RESET)	-> Muestra las reglas del make"
+	@echo "\n"
 
 # La regla .PHONY indica que no hay un archivo llamado all, clean, fclean, 
 # git, re o libft
