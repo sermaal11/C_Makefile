@@ -12,7 +12,7 @@ NAME =
 # Compilador a utilizar (gcc, clang, etc)
 CC = gcc
 # Flags de compilacion (agregar los que se necesiten)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g3 -Wall -Wextra -Werror
 
 #------------------------------------------------------------------------------#
 
@@ -166,7 +166,7 @@ git: fclean
 		read -p "Mensaje para el commit: " message; \
 		git commit -m "$$message"; \
 		git push; \
-		@echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡Git push realizado!!! (⌐■_■)$(RESET)"; \
+		echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡Git push realizado!!! (⌐■_■)$(RESET)"; \
 	else \
 		echo "$(BOLD_RED)(҂◡_◡) ¡¡¡Git push no realizado (҂◡_◡)!!!$(RESET)"; \
 	fi
