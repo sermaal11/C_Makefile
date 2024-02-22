@@ -3,6 +3,15 @@
 #********************************* C MAKEFILE *********************************#
 #******************************************************************************#
 #------------------------------------------------------------------------------#
+# Antes de completar el Makefile, puedes ejecutar el siguiente comando para
+# inicializar el proyecto:
+# make init
+# Este comando creará un archivo .gitignore con las extensiones mas comunes que
+# se suelen ignorar en los proyectos de C para 42 y si lo deseas, te mostrará
+# los comandos que puedes usar en este Makefile.
+# ¡¡¡Recuerda que puedes añadir tus propias reglas al Makefile!!!
+# ¡¡¡Buena suerte con tu proyecto!!!
+#------------------------------------------------------------------------------#
 
 # Nombre del ejecutable a crear (sin espacios)
 NAME = 
@@ -24,24 +33,24 @@ SRCS =
 # Archivos objeto (no tocar)
 OBJS = $(SRCS:.c=.o)
 # Directorio de los archivos objeto (no tocar)
-OBJDIR = objects
-# Directorio de las libft. Si se usa, descomentar la linea
-# LIBFT_DIR = ./libft
-# Librerias a utilizar. Si no se usa, comentar la linea
-LIBFT = $(LIBFT_DIR)/libft.a
+OBJDIR = $(NAME)_objects
+# Directorio de la libft. Si se usa, descomentar la linea
+#LIBFT_DIR = ./libft
+# Libreria a utilizar. Si se usa, descomentar la linea
+#LIBFT = $(LIBFT_DIR)/libft.a
 
 #------------------------------------------------------------------------------#
 
-# Colores para el make (opcional)
-# (Agregar los que se necesiten)
+# Colores para el make.
 
-# Reset
+# (Elige los colores que mas te gusten para el makefile. Elimina los que no
+# necesites.)
+
 # Recuerda siempre usar $(RESET) al final de tu mensaje para restablecer los
 # colores a los valores predeterminados de la terminal.
-
 RESET = \033[0m
 
-# Regular Colors
+# Regular
 BLACK = \033[0;30m
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -93,6 +102,7 @@ BACKGROUND_PINK = \033[105m
 
 # Reglas del make (no tocar)
 
+# La regla all compila el ejecutable
 all:libft $(NAME)
 	@echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡$(NAME) compilado con exito!!! (⌐■_■)$(RESET)"
 
@@ -148,7 +158,25 @@ fclean: clean #libft_fclean
 # La regla re elimina todo y compila nuevamente
 re: fclean all
 
-# La regla run compila y ejecuta el programa
+# La regla init inicializa el proyecto
+init:
+	@echo "$(CYAN)Creando archivo .gitignore...$(RESET)"
+	@echo "$(CYAN)Añadiendo .DS_Store, .vscode, .dSYM y .o al archivo .gitignore...$(RESET)"
+	@echo "\n"
+	@echo ".DS_Store" > .gitignore
+	@echo ".vscode" >> .gitignore
+	@echo "*.dSYM" >> .gitignore
+	@echo "*.o" >> .gitignore
+	@read -p "Quieres ver los comandos de los que dispone este Makefile? [y/n]: " answer; \
+	if [ "$$answer" = "y" ]; then \
+		make help; \
+		read -p "Para continuar, presiona enter..."; \
+	else \
+		echo "Puedes ver los comandos con 'make help' en cualquier momento"; \
+	fi
+	@echo "$(BOLD_GREEN)(⌐■_■) ¡¡¡Proyecto inicializado, ya puedes empezar a completar el Makefile!!! (⌐■_■)$(RESET)"
+
+# La regla test compila y ejecuta el programa con los argumentos que le pases
 test: re
 	@read -p "¿Cuántos argumentos quieres introducir? " num_args; \
 	for ((i=1; i<=num_args; i++)); do \
@@ -156,6 +184,7 @@ test: re
 		args+=" $$arg"; \
 	done; \
 	./$(NAME)$$args
+
 
 # La regla git agrega, hace commit y hace push
 git: fclean
@@ -174,12 +203,13 @@ git: fclean
 # La regla help muestra las reglas del make
 help:
 	@echo "\n"
-	@echo "$(BOLD_PURPLE)Reglas del make:$(RESET)"
+	@echo "$(BOLD_PURPLE)Reglas incluidas en el Makefile:$(RESET)"
 	@echo "\n"
 	@echo "  $(CYAN)all$(RESET)	-> Compila el ejecutable"
 	@echo "  $(CYAN)clean$(RESET)	-> Elimina los archivos objeto"
 	@echo "  $(CYAN)fclean$(RESET)-> Elimina los archivos objeto y el ejecutable"
 	@echo "  $(CYAN)re$(RESET)	-> Elimina todo y compila nuevamente"
+	@echo "  $(CYAN)init$(RESET)	-> Inicializa el proyecto"
 	@echo "  $(CYAN)test$(RESET)	-> Compila y ejecuta el promgrama con los argumentos que le pases"
 	@echo "  $(CYAN)git$(RESET)	-> Agrega, hace commit y hace push"
 	@echo "  $(CYAN)help$(RESET)	-> Muestra las reglas del make"
