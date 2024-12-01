@@ -1,6 +1,9 @@
 # Proyecto en C con Makefile
 
-Este proyecto está configurado para compilar programas en C utilizando un **Makefile** flexible y bien documentado. Incluye soporte para librerías personalizadas como `libft`, limpieza de archivos, validación con `Norminette` y prueba de memoria con herramientas como `Valgrind` o `Leaks`.
+Este proyecto está configurado para compilar programas en C utilizando un 
+**Makefile** flexible y bien documentado. Incluye soporte para librerías 
+personalizadas como `libft`, limpieza de archivos, validación con `Norminette` 
+y prueba de memoria con herramientas como `Valgrind` o `Leaks`.
 
 ## **Estructura del Proyecto**
 
@@ -116,7 +119,8 @@ make NOCOLOR=1
    - Si deseas verificar el estilo del código, instala `Norminette`.
 
 3. **Valgrind o Leaks (opcional):**
-   - Instala `Valgrind` para Linux o asegúrate de tener las herramientas de desarrollo de Xcode para usar `Leaks` en macOS.
+   - Instala `Valgrind` para Linux o asegúrate de tener las herramientas de 
+   desarrollo de Xcode para usar `Leaks` en macOS.
 
 ---
 
@@ -127,4 +131,5 @@ Este Makefile puede ser extendido para incluir nuevas funcionalidades, como:
 - Soporte para múltiples librerías adicionales.
 - Scripts para pruebas automatizadas.
 
-¡Disfruta programando! Si tienes dudas, consulta el Makefile directamente, ya que contiene explicaciones detalladas en los comentarios.
+¡Disfruta programando! Si tienes dudas, consulta el Makefile directamente, ya 
+que contiene explicaciones detalladas en los comentarios.
